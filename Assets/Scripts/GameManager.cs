@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
     private int owned01;
     private int price11 = 1000;
     private int owned11;
+    private int price02 = 2000;
+    private int owned02;
+    private int price12 = 20000;
+    private int owned12;
     void Start()
     {
         Select.SetActive(true);
@@ -55,7 +59,7 @@ public class GameManager : MonoBehaviour
         idleMPText.text = "Idle Multiplier: " + idleMP + "X";
         bulkText.text = "Selected: " + bulk;
         Store01Text.text = owned01 + " | $" + price01 * bulk;
-        Store02Text.text = "To be added";
+        Store02Text.text = owned02 + " | $" + price02 * bulk;
         Store03Text.text = "To be added";
         Store04Text.text = "To be added";
         Store05Text.text = "To be added";
@@ -63,7 +67,7 @@ public class GameManager : MonoBehaviour
         Store07Text.text = "To be added";
         Store08Text.text = "To be added";
         Store11Text.text = owned11 + " | $" + price11 * bulk;
-        Store12Text.text = "To be added";
+        Store12Text.text = owned12 + " | $" + price12 * bulk;
         Store13Text.text = "To be added";
         Store14Text.text = "To be added";
         Store15Text.text = "To be added";
@@ -80,8 +84,10 @@ public class GameManager : MonoBehaviour
     }
     public void Held()
     {
-        money += (clickINC * clickMP);
-
+        
+        
+            money += (clickINC * clickMP);
+        
     }
 //MENUS
     public void slct()
@@ -121,6 +127,8 @@ public class GameManager : MonoBehaviour
         bulkText.text = "Selected: " + bulk;
         Store01Text.text = owned01 + " | $" + price01 * bulk;
         Store11Text.text = owned11 + " | $" + price11 * bulk;
+        Store02Text.text = owned02 + " | $" + price02 * bulk;
+        Store12Text.text = owned12 + " | $" + price12 * bulk;
     }
     public void bulk10 ()
     {
@@ -128,6 +136,8 @@ public class GameManager : MonoBehaviour
         bulkText.text = "Selected: " + bulk;
         Store01Text.text = owned01 + " | $" + price01 * bulk;
         Store11Text.text = owned11 + " | $" + price11 * bulk;
+        Store02Text.text = owned02 + " | $" + price02 * bulk;
+        Store12Text.text = owned12 + " | $" + price12 * bulk;
     }
     public void bulk100 ()
     {
@@ -135,6 +145,8 @@ public class GameManager : MonoBehaviour
         bulkText.text = "Selected: " + bulk;
         Store01Text.text = owned01 + " | $" + price01 * bulk;
         Store11Text.text = owned11 + " | $" + price11 * bulk;
+        Store02Text.text = owned02 + " | $" + price02 * bulk;
+        Store12Text.text = owned12 + " | $" + price12 * bulk;
     }
     public void store01()
     {
@@ -160,5 +172,29 @@ public class GameManager : MonoBehaviour
             clickMPText.text = "Click Multiplier: " + clickMP + "X";
         }
     }
-       
+    public void store02()
+    {
+        if (price02 * bulk <= money)
+        {
+            idleINC += 5 * bulk;
+            money -= price02 * bulk;
+            price02 += ((price02 / 100) * 10) * bulk;
+            owned02 += bulk;
+            Store02Text.text = owned02 + " | $" + price02 * bulk;
+            idleINCText.text = "Per Frame: " + idleINC;
+        }
+    }
+    public void store12()
+    {
+        if (price12 * bulk <= money)
+        {
+            idleMP += 1 * bulk;
+            money -= price12 * bulk;
+            price12 += ((price12 / 100) * 10) * bulk;
+            owned12 += bulk;
+            Store12Text.text = owned12 + " | $" + price12 * bulk;
+            idleMPText.text = "Idle Multiplier: " + idleMP + "X";
+        }
+    }
+
 }
